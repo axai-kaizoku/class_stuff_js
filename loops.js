@@ -8,4 +8,4 @@ do {
 	n += 2;
 } while (n < 40);
 
-console.log(oddNums);
+console.log(oddNums);   
