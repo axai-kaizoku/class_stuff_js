@@ -1,8 +1,11 @@
 /** @format */
 
-let number = -9;
+let m = 1;
+let oddNums = [];
 
-while (number <= 10) {
-	console.log(number);
-	number++;
+while (m < 40) {
+	oddNums.push(m);
+	m += 2;
 }
+
+console.log(oddNums);
