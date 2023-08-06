@@ -1,7 +1,11 @@
 /** @format */
-let choice = 1;
+
+let n = 1;
+let oddNums = [];
+
 do {
-	choice = prompt('Pick an item: \n1. Tea\n2. Coffee\n3. Softdrinks\n4. Water');
-	alert('Your choice is : ', choice);
-} while (choice >= 0 && choice <= 5);
-          
+	oddNums.push(n);
+	n += 2;
+} while (n < 40);
+
+console.log(oddNums);
