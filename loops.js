@@ -1,8 +1,17 @@
 /** @format */
 
-'use strict'
-const word = 'RESPECT';
-for (const w of word){
-  console.log(w)
+'use strict';
+const user = {
+	id: 2,
+	name: 'Jon Snow',
+	age: 25,
+	title: 'The king of the north',
+};
+
+for (const prop in user) {
+	console.log(prop);
 }
-console.log(`Find out what it means to me...`)
+
+
+// for-in: exclusively for objects
+// for-of: exclusively for array
