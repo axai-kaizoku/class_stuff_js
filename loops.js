@@ -1,17 +1,8 @@
 /** @format */
 
-'use strict';
-const user = {
-	id: 2,
-	name: 'Jon Snow',
-	age: 25,
-	title: 'The king of the north',
-};
+let number = -9;
 
-for (const prop in user) {
-	console.log(prop);
+while (number <= 10) {
+	console.log(number);
+	number++;
 }
-
-
-// for-in: exclusively for objects
-// for-of: exclusively for array
