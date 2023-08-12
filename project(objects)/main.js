@@ -41,6 +41,19 @@ const BookCollection = {
 		this.books.push(book);
 		console.log(`Book ${book.title} added successfully with ID ${book.id} !`);
 	},
+
+	// 2. Remove a book
+	removeBook: function (removeId) {
+		let bookToBeRemoved = this.books.findIndex((book) => book.id === removeId);
+		if (bookToBeRemoved == -1) {
+			console.log(`No book with ID ${removeId} found in the collection!`);
+		} else {
+			let removedBook = this.books.splice(bookToBeRemoved, 1);
+			console.log(
+				`The book ${removedBook[0].title} has been removed from the collection`,
+			);
+		}
+	},
 };
 
 let choice = -1;
@@ -61,6 +74,8 @@ do {
 			BookCollection.addBook(newBook);
 			break;
 		case 2:
+			let removeId = prompt('Enter the ID of the book : ');
+			BookCollection.removeBook(removeId);
 			break;
 		case 3:
 			break;
