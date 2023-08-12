@@ -35,17 +35,30 @@ function Book(title, author, year) {
 
 const BookCollection = {
 	books: [],
+
+	// 1. Add a book
+	addBook: function (book) {
+		this.books.push(book);
+		console.log(`Book ${book.title} added successfully with ID ${book.id} !`);
+	},
 };
+
+let choice = -1;
 
 do {
 	console.log(
 		'Choose an option : \n1. Add a book\n2. Remove a book\n3. Search for a book\n4. Add a rating\n5. Add a review\n6. Compute average of all ratings\n7. Exit',
 	);
 
-	let choice = prompt('Enter your choice : ');
+	choice = parseInt(prompt('Enter your choice : '));
 
-	switch (expression) {
+	switch (choice) {
 		case 1:
+			let title = prompt('Enter the title: ');
+			let author = prompt('Enter the author name:');
+			let year = prompt('Enter the release year');
+			let newBook = new Book(title, author, year);
+			BookCollection.addBook(newBook);
 			break;
 		case 2:
 			break;
@@ -58,6 +71,7 @@ do {
 		case 6:
 			break;
 		case 7:
+			console.log('Thanks for stopping by!');
 			break;
 		default:
 	}
