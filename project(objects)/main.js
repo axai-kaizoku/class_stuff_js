@@ -69,6 +69,28 @@ const BookCollection = {
 			);
 		}
 	},
+
+	// 4. Add a rating
+	rateBook: function (id, rating) {
+		let book = this.books.find((book) => book.id === id);
+		if (!book) {
+			console.log(`No book with ID ${id} found in the collection`);
+		} else {
+			book.ratings.push(rating);
+			console.log(`Your rating for ${book.title} stored successfully!`);
+		}
+	},
+
+	// 5. Add a review
+	reviewBook: function (id, review) {
+		let book = this.books.find((book) => book.id === id);
+		if (!book) {
+			console.log(`No book with ID ${id} found in the collection!`);
+		} else {
+			book.reviews.push(review);
+			console.log(`Your review for ${book.title} stored successfully!`);
+		}
+	},
 };
 
 let choice = -1;
@@ -97,8 +119,16 @@ do {
 			BookCollection.searchBook(searchTitle);
 			break;
 		case 4:
+			let ratingID = prompt('Enter the ID of the book you want to rate : ');
+			let rating = prompt('Enter the rating (1 to 5)');
+			BookCollection.rateBook(ratingID, rating);
 			break;
 		case 5:
+			let reviewedID = prompt('Enter the ID of the book you want to review : ');
+			let username = prompt('Enter your name: ');
+			let content = prompt('Enter the review');
+			let newReview = { username, content };
+			BookCollection.reviewBook(reviewedID, newReview);
 			break;
 		case 6:
 			break;
