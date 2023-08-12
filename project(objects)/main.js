@@ -54,6 +54,21 @@ const BookCollection = {
 			);
 		}
 	},
+
+	// 3. Search for a book
+	searchBook: function (title) {
+		let filteredBooks = this.books.filter((book) => book.title.includes(title));
+		if (filteredBooks.length == 0) {
+			console.log(`No books found with the title: ${title}`);
+		} else {
+			console.log(`Here's what we found`);
+			filteredBooks.forEach((book) =>
+				console.log(
+					`${book.title} released in ${book.year} writted by ${book.author}`,
+				),
+			);
+		}
+	},
 };
 
 let choice = -1;
@@ -78,6 +93,8 @@ do {
 			BookCollection.removeBook(removeId);
 			break;
 		case 3:
+			let searchTitle = prompt('Enter the title you are looking for: ');
+			BookCollection.searchBook(searchTitle);
 			break;
 		case 4:
 			break;
