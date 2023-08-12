@@ -24,4 +24,28 @@ let allBooks = [
 	},
 ];
 
-let book;
+do {
+	console.log(
+		'Choose an option : \n1.Add a book\n2. Remove a book\n3. Search for a book\n4. Add a rating\n5. Add a review\n6. Compute average of all ratings\n7. Exit',
+	);
+
+	let choice = prompt('Enter your choice : ');
+
+	switch (expression) {
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7:
+			break;
+		default:
+	}
+} while (choice >= 1 && choice < 7);
