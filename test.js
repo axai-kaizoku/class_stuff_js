@@ -1,5 +1,4 @@
-/** @format */
+let characters = Array.from("How are you biro ?")
+console.log(characters);
 
-const isPalindrome = (word) => word.split('').reverse().join('') === word;
-
-console.log(isPalindrome('tenet'));
+console.log(characters.join(""))
