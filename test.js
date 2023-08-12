@@ -1,4 +1,8 @@
-let characters = Array.from("How are you biro ?")
-console.log(characters);
+/** @format */
 
-console.log(characters.join(""))
+const desk = ['Laptop', 'Mouse', 'Speakers', 'Monitor', 'Microphone'];
+
+console.log(desk.slice(2));
+console.log(desk.slice(1, 3));
+console.log(desk.slice(4));
+console.log(desk.slice(3));
