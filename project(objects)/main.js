@@ -91,6 +91,23 @@ const BookCollection = {
 			console.log(`Your review for ${book.title} stored successfully!`);
 		}
 	},
+
+	// 6. Calculate average rating
+	calculateAverageRating: function (id) {
+		let book = this.books.find((book) => book.id === id);
+		let initialValue = 0;
+		let noOfRatings = book.ratings.length;
+		let totalRatings = book.ratings.reduce(
+			(accumulator, currentValue) => accumulator + currentValue,
+			initialValue,
+		);
+		let averageRating = totalRatings / noOfRatings;
+		console.log(
+			`The average rating for ${book.title} by ${
+				book.author
+			} is ${averageRating.toPrecision(2)}`,
+		);
+	},
 };
 
 let choice = -1;
@@ -120,7 +137,7 @@ do {
 			break;
 		case 4:
 			let ratingID = prompt('Enter the ID of the book you want to rate : ');
-			let rating = prompt('Enter the rating (1 to 5)');
+			let rating = parseInt(prompt('Enter the rating (1 to 5)'));
 			BookCollection.rateBook(ratingID, rating);
 			break;
 		case 5:
@@ -131,6 +148,10 @@ do {
 			BookCollection.reviewBook(reviewedID, newReview);
 			break;
 		case 6:
+			let averageID = prompt(
+				'Enter the ID of the book you want to see the average rating for : ',
+			);
+			BookCollection.calculateAverageRating(averageID);
 			break;
 		case 7:
 			console.log('Thanks for stopping by!');
