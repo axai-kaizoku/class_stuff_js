@@ -1,23 +1,31 @@
-let today = new Date();
-console.log(Date.now());
+let date = new Date('2023-08-13 16:30:39');
+console.log(date);
 
-console.log('---------------');
+// 5/20/2020
 
-let myDob = new Date('2001-08-15 9:30:14');
-let now = new Date();
-console.log('my age is :');
-console.log(now.getFullYear() - myDob.getFullYear());
+// const options = {
+// 	year: 'numeric',
+// 	month: 'numeric',
+// 	day: 'numeric',
+// };
 
-console.log('---------------');
+// const fomrattedDate = date.toLocaleString('en-US', options);
+// console.log(fomrattedDate);
 
-let endDate = new Date('02-02-1992');
-console.log(endDate);
-console.log('---------------');
+// May/20/2020
 
-let myDate = new Date('2020-04-01 16:30:59');
-console.log(myDate.getFullYear());
-console.log(myDate.getMonth());
-console.log(myDate.getDay());
-console.log(myDate.getHours());
-console.log(myDate.getMinutes());
-console.log(myDate.getSeconds());
+const options = {
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric',
+};
+
+const timeOptions = {
+	hour: 'numeric',
+	minute: 'numeric',
+	second: 'numeric',
+	hour12: false,
+};
+
+const fomrattedDate = date.toLocaleString('en-US', timeOptions);
+console.log(fomrattedDate);
