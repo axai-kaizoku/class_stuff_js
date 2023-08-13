@@ -1,2 +1,4 @@
 let username = prompt('Enter your name: ');
-document.getElementById('user').innerText = 'Hello, ' + username;
+if (username.length > 0 && username.includes(/^\s /g)) {
+	document.getElementById('user').innerText = 'Hello, ' + username;
+}
