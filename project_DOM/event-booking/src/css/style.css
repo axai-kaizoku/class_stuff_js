@@ -1,0 +1,32 @@
+h1 {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.event {
+	background-image: url(C:\Users\prasa\Desktop\fsd_js\class_stuff\node.js\project_DOM\event-booking\src\images\birthday.jpg);
+	height: 250px;
+	width: 300px;
+	padding-top: 20px;
+	padding-left: 100px;
+	border-radius: 20px;
+}
+
+.event h3 {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+	color: #ffffff;
+	font-size: 30px;
+}
+
+.event p {
+	color: #ffffff;
+	font-size: 16px;
+}
+
+.event button {
+	border-radius: 5px;
+	background-color: white;
+	border: 1px solid white;
+	padding: 15px 50px;
+	font-size: 16px;
+}
