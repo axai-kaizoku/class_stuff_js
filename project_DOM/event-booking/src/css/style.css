@@ -3,19 +3,24 @@ h1 {
 }
 
 .event {
-	background-image: url(C:\Users\prasa\Desktop\fsd_js\class_stuff\node.js\project_DOM\event-booking\src\images\birthday.jpg);
+	background-color: gray;
 	height: 250px;
-	width: 300px;
-	padding-top: 20px;
-	padding-left: 100px;
+	width: 250px;
+	padding-top: 40px;
+	padding-left: 50px;
 	border-radius: 20px;
+	margin: 10px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	align-items: center;
 }
 
 .event h3 {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 700;
 	color: #ffffff;
-	font-size: 30px;
+	font-size: 28px;
 }
 
 .event p {
@@ -24,9 +29,26 @@ h1 {
 }
 
 .event button {
-	border-radius: 5px;
+	border-radius: 10px;
 	background-color: white;
 	border: 1px solid white;
 	padding: 15px 50px;
 	font-size: 16px;
+}
+
+.event button:hover {
+	border: 1.4px solid black;
+}
+
+#allEvents {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	flex-direction: row;
+	align-self: center;
+}
+
+.event h4 {
+	display: none;
+	color: white;
 }
