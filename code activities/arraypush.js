@@ -1,9 +1,7 @@
-/** @format */
-
 let books = [
 	{
 		title: 'To Kill a Mockingbird',
-    author: 'Harper Lee',
+		author: 'Harper Lee',
 		year: 1949,
 	},
 	{
