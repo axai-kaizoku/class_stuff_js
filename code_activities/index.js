@@ -1,16 +1,36 @@
-const sortObjectsByProperty = function (arr, property = 'age') {
-	return arr.sort((a, b) => {
-		if (typeof a[property] === 'string') {
-			return a[property].localeCompare(b[property]);
-		}
-		return a[property] - b[property];
-	});
-};
+function countByType(arr) {
+	let typeCount = {};
+	for (let item of arr) {
+		let type = typeof item;
 
-let students = [
-	{ name: 'John', age: 25 },
-	{ name: 'Mary', age: 30 },
-	{ name: 'Peter', age: 20 },
+		// Special case for null, since typeof null returns "object"
+		// if (item === null) {
+		// 	type = 'null';
+		// }
+
+		// Increment the count for the determined data type in the typeCount object
+		if (typeCount[type]) {
+			typeCount[type]++;
+		} else {
+			typeCount[type] = 1;
+		}
+	}
+
+	return typeCount;
+}
+
+const mixedArr = [
+	1,
+	2,
+	'a',
+	'b',
+	true,
+	false,
+	null,
+	undefined,
+	{},
+	[],
+	() => {},
 ];
 
-console.log(sortObjectsByProperty(students, 'name'));
+console.log(countByType(mixedArr));
