@@ -1,32 +1,18 @@
-function age(arr) {
-	let sum = 0;
-	let youngestStudent = arr[0];
-	let oldestStudent = arr[0];
-
-	for (let elem of arr) {
-		sum += elem.age;
-
-		if (elem.age < youngestStudent.age) {
-			youngestStudent = elem;
-		}
-		if (elem.age > oldestStudent.age) {
-			oldestStudent = elem;
-		}
-	}
-
-	let avg = sum / arr.length;
-
-	return `{
-    avgAge: ${avg},
-    oldest: ${oldestStudent.name}
-    youngest: ${youngestStudent.name}
-  }`;
+function calcAge(arr) {
+	let currentYear = new Date().getFullYear();
+	let newArr = arr.map((elem) => {
+		return {
+			name: elem.name,
+			age: currentYear - elem.birthYear,
+		};
+	});
+	return newArr;
 }
 
-const sampleData = [
-	{ name: 'John', age: 25 },
-	{ name: 'Mary', age: 30 },
-	{ name: 'Peter', age: 20 },
-	{ name: 'Sarah', age: 28 },
+let data = [
+	{ name: 'John', birthYear: 1990 },
+	{ name: 'Mary', birthYear: 1988 },
+	{ name: 'Peter', birthYear: 1995 },
 ];
-console.log(age(sampleData));
+
+console.log(calcAge(data));
