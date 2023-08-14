@@ -1,8 +1,16 @@
-const evenNum = function (arr) {
-	let finalarr = [];
-	arr.forEach((elem) => (elem % 2 === 0 ? finalarr.push(elem) : elem));
-	return finalarr;
+const sortObjectsByProperty = function (arr, property = 'age') {
+	return arr.sort((a, b) => {
+		if (typeof a[property] === 'string') {
+			return a[property].localeCompare(b[property]);
+		}
+		return a[property] - b[property];
+	});
 };
 
-let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-console.log(evenNum(array));
+let students = [
+	{ name: 'John', age: 25 },
+	{ name: 'Mary', age: 30 },
+	{ name: 'Peter', age: 20 },
+];
+
+console.log(sortObjectsByProperty(students, 'name'));
