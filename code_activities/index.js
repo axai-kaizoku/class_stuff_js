@@ -1,16 +1,15 @@
-function taxRate(arr) {
-	// you can change tax according to taxrate
-	let taxpercent = 10;
-	arr.map((elem) => {
-		elem.priceWithTax = elem.price + elem.price * (taxpercent / 100);
-	});
-	return arr;
+function updateClock() {
+	const now = new Date();
+	const hours = String(now.getHours()).padStart(2, '0');
+	const minutes = String(now.getMinutes()).padStart(2, '0');
+	const seconds = String(now.getSeconds()).padStart(2, '0');
+
+	const timeString1 = ``;
+	const timeString = `<p>${hours}:${minutes}:${seconds}</p>`;
+
+	document.getElementById('clock').innerHTML = timeString;
 }
 
-let data = [
-	{ name: 'book', price: 10 },
-	{ name: 'pen', price: 2 },
-	{ name: 'notebook', price: 5 },
-];
+updateClock();
 
-console.log(taxRate(data));
+setInterval(updateClock, 1000);
