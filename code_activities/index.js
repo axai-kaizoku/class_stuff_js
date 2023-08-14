@@ -1,18 +1,16 @@
-function calcAge(arr) {
-	let currentYear = new Date().getFullYear();
-	let newArr = arr.map((elem) => {
-		return {
-			name: elem.name,
-			age: currentYear - elem.birthYear,
-		};
+function taxRate(arr) {
+	// you can change tax according to taxrate
+	let taxpercent = 10;
+	arr.map((elem) => {
+		elem.priceWithTax = elem.price + elem.price * (taxpercent / 100);
 	});
-	return newArr;
+	return arr;
 }
 
 let data = [
-	{ name: 'John', birthYear: 1990 },
-	{ name: 'Mary', birthYear: 1988 },
-	{ name: 'Peter', birthYear: 1995 },
+	{ name: 'book', price: 10 },
+	{ name: 'pen', price: 2 },
+	{ name: 'notebook', price: 5 },
 ];
 
-console.log(calcAge(data));
+console.log(taxRate(data));
