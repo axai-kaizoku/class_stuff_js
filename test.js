@@ -1,6 +1,9 @@
-function greetUser() {
-	let username = document.getElementById('usernameInput').value;
-	let heading = document.createElement('h1');
-	heading.innerText = `Hello, ${username} !`;
-	document.getElementsByTagName('body')[0].appendChild(heading);
-}
+let h1title = document.querySelector('h1');
+
+h1title.addEventListener('mouseover', function () {
+	h1title.style.backgroundColor = 'yellow';
+});
+
+h1title.addEventListener('mouseout', function () {
+	h1title.style.backgroundColor = 'transparent';
+});
