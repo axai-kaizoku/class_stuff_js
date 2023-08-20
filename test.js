@@ -1,39 +1,40 @@
-class Vehicle {
-	constructor(manufacturer, model, year) {
-		this.manufacturer = manufacturer;
-		this.model = model;
-		this.year = year;
-	}
-	getInfo() {
-		return `
-		Manufacturer : ${this.manufacturer}
-		Model : ${this.model}
-		Released Year : ${this.year}
-		`;
-	}
-}
-
-class Car extends Vehicle {
-	constructor(manufacturer, model, year, fuelType) {
-		super(manufacturer, model, year);
-		this.fuelType = fuelType;
+class Courier {
+	constructor(weight, destination, source, bookedBy) {
+		this.weight = weight;
+		this.destination = destination;
+		this.source = source;
+		this.bookedBy = bookedBy;
 	}
 
-	getInfo() {
-		return `
-		Manufacturer : ${this.manufacturer}
-		Model : ${this.model}
-		Released Year : ${this.year}
-		Fuel Type : ${this.fuelType}
-		`;
+	bookCourier() {
+		this.price = this.weight > 20 ? 200 : 100;
+		return `Courier Booked! The price is ${this.price}`;
+	}
+
+	showCourier() {
+		return `Courier Booked by ${this.bookedBy} is headed to ${this.destination}. It weighs ${this.weight}.`;
 	}
 }
 
-const vehicle = new Vehicle('Volvo', 'TX-900', 2014);
-console.log(vehicle);
+let choice = -1;
 
-const polo = new Car('Volkwagen', 'DTI-SPORT', 2020, 'Diesel');
-const i20 = new Car('Hyundai', 'MODY', 2019, 'Diesel');
-
-console.log(polo);
-console.log(i20);
+do {
+	let myCourier = new Courier(500, 'Shimla', 'Hyd', 'Akshay');
+	console.log(`Choose one:\n1. Book Courier\n2. Show Courier\n3. Exit`);
+	choice = parseInt(prompt('Enter your choice : '));
+	switch (choice) {
+		case 1:
+			console.log(myCourier.bookCourier());
+			break;
+		case 2:
+			console.log(myCourier.showCourier());
+			break;
+		case 3:
+			console.log(`Thanks for Shopping By!`);
+			break;
+		default:
+			console.log(`Invalid`);
+			break;
+			2;
+	}
+} while (choice > 0 && choice < 3);
