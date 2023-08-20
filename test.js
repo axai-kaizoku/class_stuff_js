@@ -1,19 +1,14 @@
-function close() {
-	let count = 0;
-	return () => {
-		count++;
-		return count;
+function cartTotal() {
+	let item = 0;
+	return (newItem) => {
+		item += newItem;
+		return item;
 	};
 }
 
-let counter = close();
-
-console.log(close()());
+const cart = cartTotal();
+console.log(cartTotal()(100));
 console.log(`-------`);
-console.log(counter());
-console.log(counter());
-console.log(counter());
-console.log(counter());
-console.log(counter());
-console.log(counter());
-console.log(counter());
+console.log(cart(110));
+console.log(cart(800));
+console.log(cart(880));
