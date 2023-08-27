@@ -8,6 +8,21 @@
 		<title>Document</title>
 	</head>
 	<body>
-		<script src="test.js"></script>
+		<h1 id="username"></h1>
+		<button onclick="loadData()">Load Data</button>
+		<script>
+			function loadData() {
+				let myRequest = new XMLHttpRequest();
+				myRequest.open('GET', 'https://www.randomuser.me/api');
+				myRequest.send();
+				myRequest.onload = () => {
+					if (myRequest.status === 200) {
+						let convertedData = JSON.parse(myRequest.responseText);
+						document.getElementById('username').innerText =
+							convertedData.results[0].name.first;
+					}
+				};
+			}
+		</script>
 	</body>
 </html>
