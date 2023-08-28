@@ -80,3 +80,46 @@ const menu = [
 		desc: `Juicy bison steak grilled to perfection. Served with veggies and mashed potatoes.`,
 	},
 ];
+
+let allDishes = document.getElementById('allDishes');
+let content = '';
+displayAll(menu);
+
+function displayAll(dishes) {
+	content = '';
+	dishes.forEach((dish) => {
+		let individualDish = `<div class="dish">
+    <img
+      src="${dish.img}"
+      alt="${dish.title}" />
+    <div class="dishOuter">
+      <div class="dishInner">
+        <h3 class="dishName">${dish.title}</h3>
+        <h3 class="dishPrice">$ ${dish.price}</h3>
+      </div>
+      <p class="dishContent">${dish.desc}</p>
+    </div>
+  </div>`;
+		content += individualDish;
+	});
+	allDishes.innerHTML = content;
+}
+
+// filter logic here
+let allButtons = document.querySelectorAll('button');
+allButtons.forEach((button) =>
+	button.addEventListener('click', (e) => {
+		filterItems(e.target.innerText);
+	}),
+);
+
+function filterItems(category) {
+	if (category == 'All') {
+		displayAll(menu);
+	} else {
+		let filteredItems = menu.filter(
+			(dish) => dish.category.toLowerCase() === category.toLowerCase(),
+		);
+		displayAll(filteredItems);
+	}
+}

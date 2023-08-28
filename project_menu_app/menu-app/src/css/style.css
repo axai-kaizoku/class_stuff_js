@@ -9,3 +9,73 @@ body {
 	margin: 0px;
 	padding: 0px;
 }
+
+#headerTitle {
+	text-align: center;
+	margin: 20px;
+	color: rgb(7, 26, 82);
+}
+
+#headerBar {
+	width: 28%;
+	margin: 0 auto;
+	border-top: 5px solid rgb(142, 142, 65);
+	border-radius: 25px;
+}
+
+#allButtons {
+	text-align: center;
+	margin: 20px;
+}
+
+#allButtons button {
+	padding: 10px 40px;
+	font-size: 16px;
+	font-weight: 800;
+	background-color: rgb(244, 230, 190);
+	border: 2px solid rgb(161, 161, 72);
+	border-radius: 5px;
+}
+
+#allButtons button:hover {
+	border: 2px solid rgb(12, 12, 27);
+	background-color: rgb(243, 230, 196);
+}
+
+#allDishes {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	padding: 25px;
+}
+
+.dish {
+	display: flex;
+	width: 40%;
+	margin-bottom: 25px;
+}
+
+.dish img {
+	width: 230px;
+	height: 230px;
+	margin: 15px;
+	border: 2px solid rgb(161, 161, 72);
+	border-radius: 5px;
+	object-fit: cover;
+	object-position: center;
+	background-size: cover;
+}
+
+.dishInner {
+	border-bottom: 2px dotted black;
+	display: flex;
+	justify-content: space-between;
+}
+
+.dishPrice {
+	color: rgb(161, 161, 72);
+}
+
+.dishName {
+	text-transform: capitalize;
+}
