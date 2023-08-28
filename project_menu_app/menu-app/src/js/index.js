@@ -1,90 +1,30 @@
-const menu = [
-	{
-		id: 1,
-		title: 'buttermilk pancakes',
-		category: 'breakfast',
-		price: 15.99,
-		img: 'images/item-1.jpg',
-		desc: `Fluffy pancakes made with fresh buttermilk, served with maple syrup and butter.`,
-	},
-	{
-		id: 2,
-		title: 'dinner double',
-		category: 'lunch',
-		price: 13.99,
-		img: 'images/item-2.jpg',
-		desc: `A hearty lunch option featuring a double serving of our special dish, served with side salad.`,
-	},
-	{
-		id: 3,
-		title: 'godzilla milkshake',
-		category: 'shakes',
-		price: 6.99,
-		img: 'images/item-3.jpg',
-		desc: `A monstrous blend of rich flavors, this milkshake is not for the faint-hearted!`,
-	},
-	{
-		id: 4,
-		title: 'country delight',
-		category: 'breakfast',
-		price: 20.99,
-		img: 'images/item-4.jpg',
-		desc: `A traditional breakfast delight that brings the tastes of the countryside to your plate.`,
-	},
-	{
-		id: 5,
-		title: 'egg attack',
-		category: 'lunch',
-		price: 22.99,
-		img: 'images/item-5.jpg',
-		desc: `Delicious eggs served with toast, grilled tomatoes, and a side of hash browns.`,
-	},
-	{
-		id: 6,
-		title: 'oreo dream',
-		category: 'shakes',
-		price: 18.99,
-		img: 'images/item-6.jpg',
-		desc: `A dreamy milkshake loaded with real Oreo cookies and topped with whipped cream.`,
-	},
-	{
-		id: 7,
-		title: 'bacon overflow',
-		category: 'breakfast',
-		price: 8.99,
-		img: 'images/item-7.jpg',
-		desc: `Overflowing with the goodness of bacon, this dish is a must-try for breakfast lovers.`,
-	},
-	{
-		id: 8,
-		title: 'american classic',
-		category: 'lunch',
-		price: 12.99,
-		img: 'images/item-8.jpg',
-		desc: `The American classic dish, perfect for a lunch treat. Comes with fries and a drink.`,
-	},
-	{
-		id: 9,
-		title: 'quarantine buddy',
-		category: 'shakes',
-		price: 16.99,
-		img: 'images/item-9.jpg',
-		desc: `The perfect shake to accompany you during quarantine. Made with love and care.`,
-	},
-	{
-		id: 10,
-		title: 'bison steak',
-		category: 'dinner',
-		price: 22.99,
-		img: 'images/item-10.jpg',
-		desc: `Juicy bison steak grilled to perfection. Served with veggies and mashed potatoes.`,
-	},
-];
+// API Connection
+if (import.meta.env.DEV) {
+	import('../api/browser').then(({ worker }) =>
+		worker
+			.start()
+			.then(() => fetch('/dishes'))
+			.then((res) => res.json())
+			.then((res) => (menu = res)),
+	);
+}
 
+// Variable declarations
+let menu = [];
+let allAddToCartButtons = [];
+let cart = [];
+let allCartDeleteButtons = [];
 let allDishes = document.getElementById('allDishes');
 let content = '';
-displayAll(menu);
+let cartContent = '';
+let allButtons = document.querySelectorAll('button');
 
+// Function Calls
+updateCartCounter();
+displayAll(menu);
+displayCartDishes();
+
+// Menu functions
 function displayAll(dishes) {
 	content = '';
 	dishes.forEach((dish) => {
@@ -98,15 +38,16 @@ function displayAll(dishes) {
         <h3 class="dishPrice">$ ${dish.price}</h3>
       </div>
       <p class="dishContent">${dish.desc}</p>
+      <button class="dishCartButton" id="${dish.id}">Add to cart</button>
     </div>
   </div>`;
 		content += individualDish;
 	});
 	allDishes.innerHTML = content;
+	getCartButtons();
 }
 
 // filter logic here
-let allButtons = document.querySelectorAll('button');
 allButtons.forEach((button) =>
 	button.addEventListener('click', (e) => {
 		filterItems(e.target.innerText);
@@ -114,6 +55,7 @@ allButtons.forEach((button) =>
 );
 
 function filterItems(category) {
+	allDishes.innerHTML += '';
 	if (category == 'All') {
 		displayAll(menu);
 	} else {
@@ -122,4 +64,84 @@ function filterItems(category) {
 		);
 		displayAll(filteredItems);
 	}
+}
+
+// Cart functions
+function updateCartCounter() {
+	document.getElementById('cartButton').innerHTML = '&#128722;' + cart.length;
+}
+
+// select all add to cart button
+function getCartButtons() {
+	let allAddToCartButtons = document.querySelectorAll('.dishCartButton');
+	allAddToCartButtons.forEach((button) =>
+		button.addEventListener('click', (e) => {
+			addDishtoCart(e.target.id);
+		}),
+	);
+}
+
+function addDishtoCart(dishID) {
+	let flag = -1;
+	menu.forEach((dish) => {
+		if (dish.id == dishID) {
+			cart.forEach((cartDish) => {
+				if (cartDish.id == dishID) {
+					cartDish.quantity += 1;
+					flag = 1;
+				}
+			});
+			if (flag != 1) {
+				let tempDish = { ...dish, quantity: 1 };
+				cart.push(tempDish);
+			}
+		}
+	});
+	updateCartCounter();
+	displayCartDishes();
+}
+
+function displayCartDishes() {
+	cartContent = '';
+	cart.forEach((dish) => {
+		let individualDish = `<div class="cartDish">
+    <img
+      src="${dish.img}"
+      alt="${dish.title}" />
+    <h3 class="name">${dish.title}</h3>
+    <h3 class="price">${dish.price}</h3>
+    <h3 class="quantity">${dish.quantity}</h3>
+    <button class="removeBtn" id="${dish.id}">Remove</button>
+  </div>`;
+		cartContent += individualDish;
+		// console.log(cartContent);
+	});
+	document.getElementById('cart').innerHTML = cartContent;
+	// console.log(cart);
+	getDeleteButtons();
+}
+
+// select all delete button
+function getDeleteButtons() {
+	let allCartDeleteButtons = document.querySelectorAll('.removeBtn');
+	allCartDeleteButtons.forEach((button) =>
+		button.addEventListener('click', (e) => {
+			removeDishFromCart(e.target.id);
+		}),
+	);
+}
+
+function removeDishFromCart(removeID) {
+	removeID = parseInt(removeID); // Convert the ID to integer for proper comparison
+
+	for (let i = 0; i < cart.length; i++) {
+		if (cart[i].id === removeID) {
+			// Compare the dish's ID, not the entire dish object
+			cart.splice(i, 1);
+			break; // Once the item is found and removed, exit the loop
+		}
+	}
+
+	updateCartCounter();
+	displayCartDishes();
 }
