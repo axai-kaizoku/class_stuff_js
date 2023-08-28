@@ -9,19 +9,43 @@
 	</head>
 	<body>
 		<h1 id="username"></h1>
+		<input
+			type="text"
+			id="searchBox"
+			placeholder="Enter post ID" />
 		<button onclick="loadData()">Load Data</button>
+
 		<script>
 			function loadData() {
-				let myRequest = new XMLHttpRequest();
-				myRequest.open('GET', 'https://www.randomuser.me/api');
-				myRequest.send();
-				myRequest.onload = () => {
-					if (myRequest.status === 200) {
-						let convertedData = JSON.parse(myRequest.responseText);
-						document.getElementById('username').innerText =
-							convertedData.results[0].name.first;
-					}
-				};
+				let searchBox = document.getElementById('searchBox');
+				const postId = searchBox.value;
+
+				// Ensure a valid post ID is entered
+				if (!postId || isNaN(postId)) {
+					document.getElementById('username').innerText =
+						'Please enter a valid post ID';
+					return;
+				}
+
+				fetch(`${searchBox.value}`)
+					.then((response) => {
+						if (response.ok) {
+							return response.json();
+						} else {
+							document.getElementById(
+								'username',
+							).innerText = `Error: ${response.status}`;
+							throw new Error(`Request failed with status: ${response.status}`);
+						}
+					})
+					.then((post) => {
+						document.getElementById('username').innerText = post.title; // display the title of the post for demonstration
+					})
+					.catch((error) => {
+						document.getElementById('username').innerText = error.message;
+						console.log(error);
+					});
+				searchBox.value = '';
 			}
 		</script>
 	</body>
