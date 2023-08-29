@@ -5,64 +5,72 @@
 		<meta
 			name="viewport"
 			content="width=device-width, initial-scale=1.0" />
-		<title>Photo API</title>
+		<title>Dictionary API</title>
 		<style>
 			:root {
 				background-color: darkgray;
-				font-family: sans-serif;
 			}
-			.container {
-				display: flex;
-				flex-wrap: wrap;
-				flex-direction: row;
-				justify-content: space-between;
-				align-items: center;
+			section {
+				text-align: center;
 			}
-			.product {
-				margin: 10px;
-				align-items: center;
+			h1 {
+				text-align: center;
 			}
-			.title {
-				width: 300px;
+			input {
+				background-color: aliceblue;
 			}
-			.photo img {
-				width: 300px;
-				height: 300px;
-				border-radius: 10px;
-			}
-			.photo img:hover {
-				box-shadow: 3px 3px 10px black;
-				cursor: pointer;
+			p {
+				border: 1px solid grey;
+				width: auto;
+				height: auto;
 			}
 		</style>
 	</head>
 	<body>
-		<section class="container"></section>
+		<h1>Dictionary API 📕</h1>
+		<section class="container">
+			<input
+				id="wordInput"
+				type="text"
+				min="2"
+				max="10"
+				placeholder="Enter word here" />
+			<p id="definition">Enter a word to get its definition...</p>
+		</section>
 		<script>
-			let url = 'https://jsonplaceholder.typicode.com/photos';
-			let title = document.getElementsByClassName('title')[0];
-			let photo = document.getElementsByClassName('photo')[0];
-			let container = document.getElementsByClassName('container')[0];
+			document
+				.getElementById('wordInput')
+				.addEventListener('input', function () {
+					const word = this.value;
 
-			let xhr = new XMLHttpRequest();
-			let content = '';
-			xhr.onload = function () {
-				let jsonResponse = JSON.parse(xhr.response);
-				for (let i = 0; i < 50; i++) {
-					let product = `<div class="product">
-				<h1 class="title">${jsonResponse[i].title}</h1>
-				<div class="photo">
-					<img
-						src="${jsonResponse[i].url}"/>
-				</div>
-			</div>`;
-					content += product;
-				}
-				container.innerHTML = content;
-			};
-			console.log(container);
-			xhr.open('GET', url);
-			xhr.send();
+					if (word.length < 2) {
+						document.getElementById('definition').textContent =
+							'Enter a word to get its definition...';
+						return;
+					}
+
+					fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+						.then((response) => response.json())
+						.then((data) => {
+							if (
+								data &&
+								data.length > 0 &&
+								data[0].meanings &&
+								data[0].meanings.length > 0
+							) {
+								const meaning = data[0].meanings[0].definitions[0].definition;
+								document.getElementById('definition').textContent = meaning;
+							} else {
+								document.getElementById('definition').textContent =
+									'No definition found for this word.';
+							}
+						})
+						.catch((error) => {
+							console.error('Error fetching data:', error);
+							document.getElementById('definition').textContent =
+								'An error occurred. Please try again.';
+						});
+				});
 		</script>
 	</body>
 </html>
