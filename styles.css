@@ -1,0 +1,75 @@
+:root {
+	/* background-color: #fbf0b9; */
+	color: #869fcb;
+	font-family: sans-serif;
+}
+
+#heading {
+	text-align: center;
+}
+
+#container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+#container div {
+	width: 200px;
+	height: 200px;
+	color: #869fcb;
+	border: 3px solid black;
+	margin: 10px;
+	border-radius: 20px;
+}
+
+.box-1 {
+	background-color: #98ff98;
+}
+.box-2 {
+	background-color: #ffe5b4;
+}
+.box-3 {
+	background-color: #b5afcb;
+}
+.box-4 {
+	background-color: #aec6cf;
+}
+.box-5 {
+	background-color: #ffb7ce;
+}
+.box-6 {
+	background-color: #121212;
+}
+.box-7 {
+	background-color: #181818;
+}
+.box-8 {
+	background-color: #e0e0e0;
+}
+.box-9 {
+	background-color: #f5f5dc;
+}
+.box-10 {
+	background-color: #d3d3d3;
+}
+.box-11 {
+	background-color: #d2b48c;
+}
+/* 
+Mint Green: #98FF98
+Soft Peach: #FFE5B4
+Lavender: #B5AFCB
+Sky Blue: #AEC6CF
+Baby Pink: #FFB7CE
+
+
+Background: #121212 
+ground: #181818
+Text: #E0E0E0
+
+
+
+Beige: #F5F5DC
+Light Gray: #D3D3D3
+Soft Tan: #D2B48C */
