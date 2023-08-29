@@ -5,33 +5,63 @@
 		<meta
 			name="viewport"
 			content="width=device-width, initial-scale=1.0" />
-		<title>Blog API</title>
+		<title>Photo API</title>
 		<style>
 			:root {
 				background-color: darkgray;
-				font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+				font-family: sans-serif;
+			}
+			.container {
+				display: flex;
+				flex-wrap: wrap;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+			}
+			.product {
+				margin: 10px;
+				align-items: center;
+			}
+			.title {
+				width: 300px;
+			}
+			.photo img {
+				width: 300px;
+				height: 300px;
+				border-radius: 10px;
+			}
+			.photo img:hover {
+				box-shadow: 3px 3px 10px black;
+				cursor: pointer;
 			}
 		</style>
 	</head>
 	<body>
-		<div class="container">
-			<h1 id="title"></h1>
-			<p id="desc"></p>
-		</div>
+		<section class="container"></section>
 		<script>
-			let url = 'https://jsonplaceholder.typicode.com/posts/30';
-			let title = document.getElementById('title');
-			let desc = document.getElementById('desc');
+			let url = 'https://jsonplaceholder.typicode.com/photos';
+			let title = document.getElementsByClassName('title')[0];
+			let photo = document.getElementsByClassName('photo')[0];
+			let container = document.getElementsByClassName('container')[0];
 
 			let xhr = new XMLHttpRequest();
+			let content = '';
 			xhr.onload = function () {
-				if (xhr.status == 200) {
-					let jsonResponse = JSON.parse(xhr.response);
-					title.innerText = jsonResponse.title;
-					desc.innerText = jsonResponse.body;
+				let jsonResponse = JSON.parse(xhr.response);
+				for (let i = 0; i < 50; i++) {
+					let product = `<div class="product">
+				<h1 class="title">${jsonResponse[i].title}</h1>
+				<div class="photo">
+					<img
+						src="${jsonResponse[i].url}"/>
+				</div>
+			</div>`;
+					content += product;
 				}
+				container.innerHTML = content;
 			};
-			xhr.open('GET', url, true);
+			console.log(container);
+			xhr.open('GET', url);
 			xhr.send();
 		</script>
 	</body>
