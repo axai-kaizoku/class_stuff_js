@@ -5,78 +5,34 @@
 		<meta
 			name="viewport"
 			content="width=device-width, initial-scale=1.0" />
-		<title>Advice API</title>
+		<title>Blog API</title>
 		<style>
 			:root {
 				background-color: darkgray;
 				font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 			}
-			#container {
-				display: flex;
-				justify-content: center;
-				flex-direction: column;
-				align-items: center;
-			}
-			.contentBox {
-				border: 2px solid darkgray;
-				width: 500px;
-				text-align: center;
-				justify-content: center;
-				border-radius: 20px;
-			}
-			.contentBox:hover {
-				cursor: pointer;
-			}
-			button {
-				width: 40px;
-				height: 40px;
-				margin-left: 30%;
-				margin-right: 50%;
-				cursor: pointer;
-				padding: 10px;
-				border-radius: 90%;
-				font-size: 18px;
-			}
 		</style>
 	</head>
 	<body>
-		<section id="container">
-			<h2>Random Advice</h2>
-			<div class="heading">
-				<div class="contentBox"><h3 class="advice"></h3></div>
-			</div>
-		</section>
-		<button id="refreshBtn">🗘</button>
+		<div class="container">
+			<h1 id="title"></h1>
+			<p id="desc"></p>
+		</div>
 		<script>
-			let url = 'https://api.adviceslip.com/advice';
-			let adviceElement = document.getElementsByClassName('advice')[0];
+			let url = 'https://jsonplaceholder.typicode.com/posts/30';
+			let title = document.getElementById('title');
+			let desc = document.getElementById('desc');
 
-			function fetchAdvice() {
-				let xhr = new XMLHttpRequest();
-				xhr.onload = function () {
-					if (xhr.status == 200) {
-						let jsonResponse = JSON.parse(xhr.responseText);
-						adviceElement.innerText = jsonResponse.slip.advice;
-					} else {
-						adviceElement.innerText =
-							'Failed to fetch advice. Please try again later.';
-					}
-				};
-				xhr.onerror = function () {
-					adviceElement.innerText =
-						'Failed to fetch advice. Please check your internet connection and try again.';
-				};
-				xhr.open('GET', url, true);
-				xhr.send();
-			}
-
-			// Fetch the advice immediately on page load
-			fetchAdvice();
-
-			// Attach event listener to refresh button
-			document
-				.getElementById('refreshBtn')
-				.addEventListener('click', fetchAdvice);
+			let xhr = new XMLHttpRequest();
+			xhr.onload = function () {
+				if (xhr.status == 200) {
+					let jsonResponse = JSON.parse(xhr.response);
+					title.innerText = jsonResponse.title;
+					desc.innerText = jsonResponse.body;
+				}
+			};
+			xhr.open('GET', url, true);
+			xhr.send();
 		</script>
 	</body>
 </html>
