@@ -1,59 +1,29 @@
 :root {
-	background-color: #b5afcb;
-	color: #ffffff;
-	font-family: sans-serif;
+	background-color: gray;
 }
 
-#heading {
+#head {
 	text-align: center;
 }
-
-#heading_2 {
-	text-align: center;
-}
-
-.searchBox {
-	text-align: center;
-	padding: 20px;
-}
-
-#inputBox {
+#univ {
+	font-size: 20px;
+	border-radius: 10px;
 	padding: 10px;
-	border-radius: 14px;
-}
-
-#submitBtn {
-	padding: 10px;
-	border-radius: 14px;
-	cursor: pointer;
 }
 
 #container {
-	border-radius: 10px;
-	height: fit-content;
-	text-align: center;
-	margin-left: 400px;
-}
-
-.inner {
-	display: block;
-	justify-content: center;
+	margin-top: 20px;
+	display: flex;
 	flex-direction: column;
-}
-
-.mealImg {
-	border-radius: 20px;
-	width: 50%;
-}
-
-.meal {
-	border: 1px solid black;
-	width: 50%;
-	border-radius: 20px;
-	padding: 50px;
-	margin-bottom: 40px;
-}
-
-#error {
+	flex-wrap: wrap;
 	text-align: center;
+	align-items: center;
+}
+
+.university {
+	border: 2px solid lightgray;
+	border-radius: 20px;
+	width: fit-content;
+	margin-bottom: 20px;
+	padding: 16px;
 }
