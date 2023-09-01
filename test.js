@@ -1,31 +1,79 @@
-let country;
-let container = document.getElementById('container');
+let data = [];
 
-document.getElementById('univ').addEventListener('change', (e) => {
-	country = e.target.value;
-	fetch(`http://universities.hipolabs.com/search?country=${country}`)
-		.then((response) => response.json())
-		.then((universities) => genUniv(universities))
-		.catch((error) => console.log(error));
-});
+// selectors
+let submitBtn = document.getElementById('submitBtn');
+let inputBox = document.getElementById('inputBox');
+let taskBox = document.getElementById('taskBox');
+let clearItems = document.getElementById('clearItems');
 
-function genUniv(universities) {
+clearItems.addEventListener('click', clearList);
+
+function clearList() {
+	data = [];
+	createTask(data);
+}
+
+submitBtn.addEventListener('click', getValue);
+
+function getValue() {
+	let val = inputBox.value;
+
+	if (val != '' && val != ' ') {
+		let obj = {
+			name: val,
+			id: data.length,
+		};
+
+		data.push(obj);
+		createTask(data);
+
+		inputBox.value = '';
+	} // clear the input
+}
+
+function createTask(arr) {
 	let content = '';
-	universities.forEach((univ) => {
-		let univHtml = `<div class="university">
-        <h2 class="title">&#127979; ${univ.name}</h2>
-        <h3 class="location">&#128205; 
-					 ${univ.state || univ.country}
-				</h3>
-				<p>For more details visit university site</p>
-        <h4 class="site">
-            Link:
-            <a href="${univ.web_pages[0]}" target="_blank">${
-			univ.domains[0]
-		}</a>
-        </h4>
-        </div>`;
-		content += univHtml;
+	arr.forEach((task) => {
+		let date = new Date();
+
+		let individualTask = `<div class="item">
+	<div class="titleAndTime"><h3 class="title">${task.name}</h3>
+	<p class="timestamp">${date.toLocaleTimeString()}</p></div>
+	<div class="itemBtns">
+		<button
+			class="editBtn"
+			data-id="${task.id}">
+			Edit
+		</button>
+		<button
+			class="deleteBtn"
+			data-id="${task.id}">
+			Delete
+		</button>
+	</div>
+</div>`;
+		content += individualTask;
 	});
-	container.innerHTML = content;
+
+	taskBox.innerHTML = content;
+
+	// Add event listeners to the Edit and Delete buttons
+	document.querySelectorAll('.editBtn').forEach((btn) => {
+		btn.addEventListener('click', (e) => {
+			const id = e.target.dataset.id;
+			const newValue = prompt('Edit your task:', data[id].name);
+			if (newValue) {
+				data[id].name = newValue;
+				createTask(data);
+			}
+		});
+	});
+
+	document.querySelectorAll('.deleteBtn').forEach((btn) => {
+		btn.addEventListener('click', (e) => {
+			const id = e.target.dataset.id;
+			data.splice(id, 1);
+			createTask(data);
+		});
+	});
 }

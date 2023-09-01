@@ -1,29 +1,119 @@
 :root {
-	background-color: gray;
-}
-
-#head {
-	text-align: center;
-}
-#univ {
-	font-size: 20px;
-	border-radius: 10px;
-	padding: 10px;
+	background-color: lightgray;
+	font-family: sans-serif;
 }
 
 #container {
-	margin-top: 20px;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	text-align: center;
-	align-items: center;
+	position: absolute;
+	width: 500px;
+	height: fit-content;
+	background-color: aliceblue;
+	padding: 20px;
+	margin-left: 50px;
+	margin-top: 60px;
+	border-radius: 20px;
 }
 
-.university {
-	border: 2px solid lightgray;
-	border-radius: 20px;
-	width: fit-content;
+#heading {
+	text-align: center;
+	color: rgb(5, 33, 118);
+}
+
+#searchBox {
+	text-align: center;
+	padding: 10px;
+}
+
+#inputBox {
+	margin-right: 0px;
+	width: 300px;
+	padding: 10px 20px;
+	border-radius: 10px;
 	margin-bottom: 20px;
-	padding: 16px;
+	border: 0px;
+	background-color: lightcyan;
+}
+
+#submitBtn {
+	margin-left: 0px;
+	padding: 10px 20px;
+	border-radius: 10px;
+	cursor: pointer;
+	background-color: lightcyan;
+	border: 0px;
+}
+
+#submitBtn:hover {
+	background-color: rgb(195, 255, 255);
+}
+
+#taskBox {
+	margin-left: 5px;
+	align-items: center;
+	padding: 20px;
+	height: fit-content;
+}
+
+#clearItems {
+	padding: 10px 20px;
+	display: flex;
+	margin-left: 200px;
+	margin-top: 40px;
+	border-radius: 20px;
+	border: 0px;
+	cursor: pointer;
+}
+
+#clearItems:hover {
+	background-color: lightsalmon;
+}
+
+.item {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	border-radius: 26px;
+	padding: 5px;
+}
+
+.itemBtns {
+	display: flex;
+	padding: 10px;
+}
+
+.title {
+	display: flex;
+	padding-left: 20px;
+}
+
+.titleAndTime {
+	display: flex;
+	flex-direction: row;
+}
+
+.timestamp {
+	font-size: 10px;
+	padding-top: 17px;
+	padding-left: 10px;
+}
+
+.editBtn {
+	border-radius: 16px;
+	border: 0px;
+	cursor: pointer;
+}
+
+.deleteBtn {
+	border-radius: 16px;
+	border: 0px;
+	cursor: pointer;
+}
+
+.editBtn:hover {
+	background-color: lightcoral;
+}
+
+.deleteBtn:hover {
+	background-color: lightcoral;
 }
