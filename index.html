@@ -20,43 +20,9 @@
 	<body>
 		<div id="root"></div>
 		<script type="text/babel">
-			// USING JSX
 			const rootEl = document.getElementById('root');
-
-			const name = 'akshay';
-			const className = 'message';
-			const fullName = {
-				first: 'Akshay',
-				last: 'Yelle',
-			};
-
-			const dispName = (obj) => `${obj.first} ${obj.last}`;
-
-			const element = (
-				<>
-					<h1 className={className}>Hello, I am {dispName(fullName)}</h1>
-					<p>This is a paragraph element created using JSX...</p>
-				</>
-			);
-			ReactDOM.render(element, rootEl);
-
-			// USING REACT
-
-			// const root = document.getElementById('root');
-			// const props = {
-			// 	className: 'message',
-			// 	children: 'This is created using REACT...',
-			// };
-
-			// const element = React.createElement('h1', props);
-			// ReactDOM.render(element, root);
-			// USING JAVASCRIPT
-
-			// const rootEl = document.getElementById('root');
-			// const element = document.createElement('h1');
-			// element.textContent = 'Hello, this is created using javascript';
-			// element.classList.add('message');
-			// rootEl.appendChild(element);
+			const Greeting = () => <h1>Hello World...</h1>;
+			ReactDOM.render(<Greeting />, rootEl);
 		</script>
 	</body>
 </html>
