@@ -1,10 +1,12 @@
-import Greeting from './Components/Greeting/index';
+import WelcomeMessage from './Components/WelcomeMessage/index';
 import './App.css';
 
 function App() {
 	return (
 		<div className="App">
-			<Greeting />
+			<WelcomeMessage timing="morning" />
+			<WelcomeMessage timing="evening" />
+			<WelcomeMessage timing="night" />
 		</div>
 	);
 }
