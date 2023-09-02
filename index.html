@@ -6,28 +6,57 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
-		<link
-			rel="stylesheet"
-			href="styles.css" />
+		<script src="//unpkg.com/react@16.7.0/umd/react.production.min.js"></script>
+		<script src="//unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js"></script>
+		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+		<style>
+			:root {
+				font-size: 28px;
+				background-color: whitesmoke;
+				font-family: sans-serif;
+			}
+		</style>
 	</head>
 	<body>
-		<img
-			src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png"
-			alt="Wikipedia" />
-		<h1 class="heading">Search Wikipedia</h1>
-		<div id="searchBox">
-			<input
-				type="text"
-				placeholder="type here..."
-				id="input" />
-			<button>Submit</button>
-		</div>
-		<section id="container">
-			<!-- <div class="card">
-				<h2 class="title">Computer</h2>
-				<p class="desc">electronic <span class=\"searchmatch\">computers</span> can perform generic sets of operations known as programs. These programs enable <span class=\"searchmatch\">computers</span> to perform a wide range of tasks. A <span class=\"searchmatch\">computer</span> system"</p>
-			</div> -->
-		</section>
-		<script src="test.js"></script>
+		<div id="root"></div>
+		<script type="text/babel">
+			// USING JSX
+			const rootEl = document.getElementById('root');
+
+			const name = 'akshay';
+			const className = 'message';
+			const fullName = {
+				first: 'Akshay',
+				last: 'Yelle',
+			};
+
+			const dispName = (obj) => `${obj.first} ${obj.last}`;
+
+			const element = (
+				<>
+					<h1 className={className}>Hello, I am {dispName(fullName)}</h1>
+					<p>This is a paragraph element created using JSX...</p>
+				</>
+			);
+			ReactDOM.render(element, rootEl);
+
+			// USING REACT
+
+			// const root = document.getElementById('root');
+			// const props = {
+			// 	className: 'message',
+			// 	children: 'This is created using REACT...',
+			// };
+
+			// const element = React.createElement('h1', props);
+			// ReactDOM.render(element, root);
+			// USING JAVASCRIPT
+
+			// const rootEl = document.getElementById('root');
+			// const element = document.createElement('h1');
+			// element.textContent = 'Hello, this is created using javascript';
+			// element.classList.add('message');
+			// rootEl.appendChild(element);
+		</script>
 	</body>
 </html>
