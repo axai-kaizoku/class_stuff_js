@@ -1,14 +1,17 @@
 import './App.css';
-import Alert from './Components/Alert';
-import profileDetailsList from './Sources/alertData';
+import Employee from './Components/Employee';
+import employeeData from './Sources/EmpData';
 
 function App() {
 	return (
 		<div className="bg-container">
-			<h1 className="heading">Buzz Alerts</h1>
-			<div className="buzz-list">
-				{profileDetailsList.map((elem) => (
-					<Alert alertData={elem} />
+			<div className="heading">Employee List</div>
+			<div className="emp-list">
+				{employeeData.map((e, i) => (
+					<Employee
+						emp={e}
+						key={e.id}
+					/>
 				))}
 			</div>
 		</div>
