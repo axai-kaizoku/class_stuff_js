@@ -1,21 +1,15 @@
 import React from 'react';
-import TimeClock from './Components/TimeClock';
+import Header from './Components/Header';
+import InstaPosts from './Components/InstaPosts';
 
 class App extends React.Component {
-	state = {
-		showClock: true,
-	};
-
 	render() {
 		return (
 			<>
-				<button
-					onClick={() => {
-						this.setState({ showClock: !this.state.showClock });
-					}}>
-					{this.state.showClock ? 'Hide Clock' : 'Show Clock'}
-				</button>
-				<div className="container">{this.state.showClock && <TimeClock />}</div>
+				<div className="app-container">
+					<Header />
+					<InstaPosts />
+				</div>
 			</>
 		);
 	}
