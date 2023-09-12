@@ -10,7 +10,11 @@ class TimeClock extends React.Component {
 	}
 
 	componentDidMount() {
-		setInterval(this.tick, 1000);
+		this.timer = setInterval(this.tick, 1000);
+	}
+
+	componentWillUnmount() {
+		clearInterval(this.timer);
 	}
 
 	tick = () => {
@@ -22,7 +26,7 @@ class TimeClock extends React.Component {
 	render() {
 		return (
 			<div className="time-clock">
-				<h1>Time Clock</h1>
+				<h1>Clock</h1>
 				<h1>{this.state.date.toLocaleTimeString()}</h1>
 			</div>
 		);

@@ -16,4 +16,19 @@
 	width: 400px;
 	height: 400px;
 	background-color: aquamarine;
+	border-radius: 50%;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+
+	flex-direction: column;
+}
+
+button {
+	cursor: pointer;
+	padding: 10px 20px;
+	margin-top: 50px;
+	margin-left: 100px;
+	font-size: 24px;
+	border-radius: 20px;
 }
