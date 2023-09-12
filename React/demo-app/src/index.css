@@ -8,26 +8,12 @@
 	justify-content: center;
 	align-items: center;
 	flex-flow: column;
+	width: 500px;
+	height: 500px;
 }
 
-.items {
-	display: flex;
-	flex-flow: column;
-
-	width: 900px;
-	padding: 10px;
-}
-
-.item {
-	display: flex;
-	flex-flow: row;
-	justify-content: space-between;
-
-	margin: 10px;
-}
-
-img {
-	border-radius: 50%;
-	width: 8%;
-	padding: 10px;
+.time-clock {
+	width: 400px;
+	height: 400px;
+	background-color: aquamarine;
 }

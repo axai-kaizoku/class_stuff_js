@@ -1,18 +1,14 @@
-import './App.css';
-import Alert from './Components/Alert';
-import profileDetailsList from './Sources/alertData';
+import React from 'react';
+import TimeClock from './Components/TimeClock';
 
-function App() {
-	return (
-		<div className="bg-container">
-			<h1 className="heading">Buzz Alerts</h1>
-			<div className="buzz-list">
-				{profileDetailsList.map((elem) => (
-					<Alert alertData={elem} />
-				))}
+class App extends React.Component {
+	render() {
+		return (
+			<div className="container">
+				<TimeClock />
 			</div>
-		</div>
-	);
+		);
+	}
 }
 
 export default App;
