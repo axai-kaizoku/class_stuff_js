@@ -1,46 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, createContext, useContext } from 'react';
+
+const nameContext = createContext();
 
 const App = () => {
-	const [count, setCount] = useState(0);
-	const [name, setName] = useState('');
-	// console.log(count);
-	useEffect(() => {
-		// console.log('useEffect called');
-	}, [name]);
+	const [name, setName] = useState('React F*** you');
 	return (
-		<div>
-			<h1>Count : {count}</h1>
-
-			<br />
-			<button
-				onClick={() => {
-					setCount(count + 1);
-					// console.log(count);
-				}}>
-				+1
-			</button>
-			<br />
-			<button
-				onClick={() => {
-					setCount(count - 1);
-					// console.log(count);
-				}}>
-				{' '}
-				- 1{' '}
-			</button>
-			<hr />
-			<input
-				value={name}
-				// ref={inputName}
-				// onKeyUp={(e) => {
-				// 	e.keyCode == 13 && setName(e.target.value);
-				// 	console.log(e.target.value);
-				// }}
-				onChange={(e) => setName(e.target.value)}
-			/>
-			<h2>{name}</h2>
-		</div>
+		<nameContext.Provider value={name}>
+			<div className="container">
+				<h1>Hello</h1>
+				<ComponentA />
+			</div>
+		</nameContext.Provider>
 	);
 };
 
 export default App;
+
+const ComponentA = () => {
+	return (
+		<div className="container">
+			<h2>ComponentA</h2>
+			<ComponentB />
+		</div>
+	);
+};
+
+export const ComponentB = () => {
+	const name = useContext(nameContext);
+	return (
+		<>
+			<div className="container">
+				<h2>ComponentB</h2>
+				<p>{name}</p>
+			</div>
+		</>
+	);
+};
