@@ -9,21 +9,8 @@ body {
 	margin: 0px;
 }
 
-.container {
+.content {
 	display: flex;
+	flex-flow: column;
 	align-items: center;
-	justify-content: center;
-	flex-flow: column nowrap;
-	width: fit-content;
-	height: 500px;
-	padding: 20px;
-}
-
-button {
-	background-color: lightgray;
-	border: 0px;
-	color: white;
-	padding: 10px 20px;
-	border-radius: 20px;
-	cursor: pointer;
 }

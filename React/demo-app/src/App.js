@@ -1,32 +1,31 @@
 import React from 'react';
+import Country from './Components/index';
 
 class App extends React.Component {
 	state = {
-		joke: '',
+		data: [],
 	};
 
-	fetchJoke() {
-		fetch(
-			'https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,explicit&type=single',
-		)
+	fetchData = async () => {
+		await fetch('https://restcountries.com/v3.1/all')
 			.then((response) => response.json())
-			.then((data) => this.setState({ joke: data.joke }));
-	}
+			.then((data) => this.setState({ data: data }));
+	};
 
 	componentDidMount() {
-		this.fetchJoke();
+		this.fetchData();
 	}
 
 	render() {
+		console.log(this.state.data);
 		return (
 			<div className="container">
-				<p>{this.state.joke}</p>
-				<button
-					onClick={() => {
-						this.fetchJoke();
-					}}>
-					Get Joke
-				</button>
+				<h1>World Tour</h1>
+				<div className="content">
+					{this.state.data.map((e) => (
+						<Country details={e} />
+					))}
+				</div>
 			</div>
 		);
 	}
