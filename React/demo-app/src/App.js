@@ -2,85 +2,31 @@ import React from 'react';
 
 class App extends React.Component {
 	state = {
-		isTimerRunning: false,
-		timeElapsed: 0,
+		joke: '',
 	};
 
-	componentWillUnmount = () => {
-		clearInterval(this.timeInterval);
-	};
+	fetchJoke() {
+		fetch(
+			'https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,explicit&type=single',
+		)
+			.then((response) => response.json())
+			.then((data) => this.setState({ joke: data.joke }));
+	}
 
-	onResetTimer = () => {
-		clearInterval(this.timeInterval);
-		this.setState({ isTimerRunning: false, timeElapsed: 0 });
-	};
-
-	onStopTimer = () => {
-		clearInterval(this.timeInterval);
-		this.setState({ isTimerRunning: false });
-	};
-
-	updateTime = () => {
-		this.setState((prevState) => ({
-			timeElapsed: prevState.timeElapsed + 1,
-		}));
-	};
-
-	onStartTimer = () => {
-		this.timeInterval = setInterval(this.updateTime, 1000);
-		this.setState({ isTimerRunning: true });
-	};
-
-	renderSeconds = () => {
-		const { timeElapsed } = this.state;
-		const seconds = Math.floor(timeElapsed % 60);
-
-		if (seconds < 10) {
-			return `0${seconds}`;
-		} else {
-			return seconds;
-		}
-	};
-
-	renderMinutes = () => {
-		const { timeElapsed } = this.state;
-		const minutes = Math.floor(timeElapsed / 60);
-
-		if (minutes < 10) {
-			return `0${minutes}`;
-		} else {
-			return minutes;
-		}
-	};
+	componentDidMount() {
+		this.fetchJoke();
+	}
 
 	render() {
-		const time = `${this.renderMinutes()}:${this.renderSeconds()}`;
 		return (
-			<div className="bg-container">
-				<div className="content-container">
-					<h1 className="title">StopWatch</h1>
-					<div className="stopwatch-con">
-						<h1 className="stopwatch-time">{time}</h1>
-						<div className="timer-buttons">
-							<button
-								className="start button"
-								onClick={this.onStartTimer}
-								disabled={this.state.isTimerRunning}>
-								Start
-							</button>
-							<button
-								className="stop button"
-								onClick={this.onStopTimer}>
-								Stop
-							</button>
-							<button
-								className="reset button"
-								onClick={this.onResetTimer}>
-								Reset
-							</button>
-						</div>
-					</div>
-				</div>
+			<div className="container">
+				<p>{this.state.joke}</p>
+				<button
+					onClick={() => {
+						this.fetchJoke();
+					}}>
+					Get Joke
+				</button>
 			</div>
 		);
 	}
