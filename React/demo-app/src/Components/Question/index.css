@@ -1,0 +1,19 @@
+.question {
+	border: 1px solid white;
+	width: 500px;
+	height: fit-content;
+	margin-bottom: 20px;
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	text-align: center;
+}
+
+.details {
+	margin-left: 80px;
+}
+
+button {
+	cursor: pointer;
+	margin-right: 20px;
+}
