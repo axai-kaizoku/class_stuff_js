@@ -1,21 +1,12 @@
-import React from 'react';
-import Question from './Components/Question';
-import './index.css';
-import queries from './questions';
+import Layout from './components/Layout';
+import './App.css';
 
-class App extends React.Component {
-	render() {
-		return (
-			<div className="container">
-				<h1>Tech Buddy</h1>
-				<div className="content">
-					{queries.map((q) => (
-						<Question question={q} />
-					))}
-				</div>
-			</div>
-		);
-	}
+function App() {
+	return (
+		<Layout>
+			<h1>App Component</h1>
+		</Layout>
+	);
 }
 
 export default App;

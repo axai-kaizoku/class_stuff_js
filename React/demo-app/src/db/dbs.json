@@ -1,0 +1,62 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "name": "Project Alpha",
+      "salesData": {
+        "revenue": 10000,
+        "profit": 5000
+      },
+      "employees": [
+        "John",
+        "Sarah",
+        "Mike"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Project Beta",
+      "salesData": {
+        "revenue": 15000,
+        "profit": 7500
+      },
+      "employees": [
+        "Mike",
+        "Emily"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Project Theta",
+      "salesData": {
+        "revenue": 8000,
+        "profit": 4000
+      },
+      "employees": [
+        "John",
+        "Emily"
+      ]
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "username": "johndoe",
+      "password": "password1"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "username": "janesmith",
+      "password": "password2"
+    },
+    {
+      "id": 3,
+      "name": "Michael Johnson",
+      "username": "michaeljohnson",
+      "password": "password3"
+    }
+  ],
+  "isLoggedIn": {}
+}
