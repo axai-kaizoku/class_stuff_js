@@ -1,15 +1,20 @@
 import Layout from '../../components/Layout';
+import { Link, Outlet, useLoaderData } from 'react-router-dom';
 
 export default function Projects() {
-  return (
-    <Layout>
-      <div className="projects">
-        <ul className="projects-list">
-          <li>
-            <a href="#">Project A</a>
-          </li>
-        </ul>
-      </div>
-    </Layout>
-  );
+	const projects = useLoaderData();
+	return (
+		<Layout>
+			<div className="projects">
+				<ul className="projects-list">
+					{projects.map((project) => (
+						<li key={project.id}>
+							<Link to={`/projects/${project.id}`}>{project.name}</Link>
+						</li>
+					))}
+				</ul>
+				<Outlet />
+			</div>
+		</Layout>
+	);
 }
