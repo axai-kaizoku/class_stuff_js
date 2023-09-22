@@ -8,12 +8,15 @@ const ProductList = () => {
 			<h1>This is ProductList</h1>
 			<ul>
 				{Products.map((product) => (
-					<Link
-						key={product.id}
-						className="link"
-						to={`/products/${product.id}`}>
-						<li key={product.id}>{product.title}</li>
-					</Link>
+					<>
+						<Link
+							key={product.id}
+							className="link"
+							to={`/productlist/${product.id}`}>
+							<li key={product.id}>{product.title}</li>
+						</Link>
+						<Outlet />
+					</>
 				))}
 			</ul>
 			<Outlet />
