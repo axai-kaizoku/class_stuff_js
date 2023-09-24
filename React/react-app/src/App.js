@@ -1,31 +1,38 @@
-// import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Components/Home';
-import Movies from './Components/Movies';
 import Action from './Components/Action';
-
-// {
-// 	/* <header className="App-header">
-// 				<h1>Hello</h1>
-// 			</header> */
-// }
+import Comedy from './Components/Comedy';
+import MovieDetail from './Components/MovieDetail';
 
 function App() {
 	return (
 		<>
 			<div className="App">
+				{/* <header className="App-header">
+					<h1>Hello</h1>
+				</header> */}
 				<BrowserRouter>
 					<Routes>
 						<Route
 							path="/"
-							element={<Home />}></Route>
+							element={<Home />}
+						/>
 						<Route
-							path="/movies"
-							element={<Movies />}></Route>
-						<Route
-							path="/movies/action"
+							path="/action"
 							element={<Action />}
+						/>
+						<Route
+							path="/action/1"
+							element={<MovieDetail />}
+						/>
+						<Route
+							path="/action/2"
+							element={<MovieDetail />}
+						/>
+						<Route
+							path="/comedy"
+							element={<Comedy />}
 						/>
 					</Routes>
 				</BrowserRouter>
