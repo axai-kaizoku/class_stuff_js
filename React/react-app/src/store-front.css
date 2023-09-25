@@ -1,0 +1,132 @@
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.app {
+  background-color: rgb(47, 47, 74);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+  color: white;
+}
+
+.logo {
+  border-bottom: 1px solid white;
+}
+
+.main {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.product {
+  border: 1px solid rgba(255, 255, 255, 0.166);
+  background-color: rgba(0, 0, 255, 0.138);
+  width: 300px;
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.product h2 {
+  margin: 8px 0;
+  padding: 0;
+  color: rgb(252, 177, 139);
+}
+
+.product h4 {
+  margin: 0;
+  padding: 0;
+  color: rgb(252, 252, 204);
+}
+
+.product p {
+  font-size: 12px;
+  text-align: justify;
+}
+
+.like-btns {
+  width: fit-content;
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.like-btns button {
+  background-color: rgb(87, 87, 87);
+  border: none;
+  cursor: pointer;
+}
+
+.like-btns button:hover {
+  background-color: rgb(237, 237, 237);
+}
+
+.like-count {
+  padding: 5px;
+  width: 50px;
+  font-weight: bold;
+  background-color: green;
+  text-align: center;
+}
+
+.product-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 30px;
+}
+
+.product-detail h1 {
+  margin: 8px 0;
+  padding: 0;
+  color: rgb(252, 177, 139);
+}
+
+.product-detail h3 {
+  margin: 0;
+  padding: 0;
+  color: rgb(252, 252, 204);
+}
+
+.product-detail p {
+}
+
+.product-likes {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.product-reviews {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 30px;
+  font-size: 14px;
+}
+
+.product-reviews p {
+  padding: 10px;
+  margin: 4px 0px;
+  background-color: rgb(74, 74, 112);
+}
