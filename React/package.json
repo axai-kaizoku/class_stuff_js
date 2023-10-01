@@ -1,0 +1,11 @@
+{
+	"name": "node-js-demo",
+	"version": "1.0.0",
+	"description": "This is a node demo project",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js"
+	},
+	"author": "Akshay Yelle",
+	"license": "ISC"
+}
