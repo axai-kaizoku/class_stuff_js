@@ -1,27 +1,41 @@
-require('dotenv').config();
+// const args = process.argv.slice(2);
 
-const fs = require('fs');
+// if (args.length === 0) {
+// 	console.log('Hello World!');
+// } else {
+// 	console.log(args);
+// }
 
-function writeLogFile(data) {
-	fs.writeFileSync('server-log.txt', data, () => {
-		console.log('Error added to log');
-	});
-}
+const yargs = require('yargs');
 
-function readLogFile() {
-	const d = new Date();
-	const data = process.env.MY_DATA;
-	try {
-		const errorData = fs.readFileSync('server-log.txt');
-		console.log(errorData.toString());
-	} catch (e) {
-		writeLogFile(
-			`${d.toLocaleString(
-				'en-IN',
-			)} - ${e.toString()} - process.env-code : ${data}`,
-		);
-	}
-}
+const notes = require('./notes.js');
 
-readLogFile();
-readLogFile();
+yargs.command({
+	command: 'add',
+	describe: 'Add a new note',
+	builder: {
+		title: {
+			type: 'string',
+			describe: 'Enter note title',
+			demandOption: true,
+		},
+		content: {
+			type: 'string',
+			describe: 'Enter note description',
+			demandOption: false,
+		},
+	},
+	handler(argv) {
+		notes.addNote(argv.title, argv.content);
+	},
+});
+
+yargs.command({
+	command: 'list',
+	describe: 'Display all the notes',
+	handler() {
+		notes.listNotes();
+	},
+});
+
+yargs.parse();
