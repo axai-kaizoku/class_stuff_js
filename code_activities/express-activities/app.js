@@ -1,64 +1,35 @@
-import express from 'express';
-import { join } from 'path';
+const express = require('express');
+const bodyParser = require('body-parser');
+const fs = require('fs');
 
 const app = express();
+const PORT = 3000;
 
-app.use(express.urlencoded({ extended: true }));
-app.set('view engine', 'pug');
-app.use('/assets', express.static(join(__dirname, 'public')));
+// Set view engine to ejs
+app.set('view engine', 'ejs');
 
+// Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
+
+// Routes
 app.get('/', (req, res) => {
-	res.render('home', {
-		posts: [
-			{
-				id: 1,
-				user: 'Axai Y',
-				image: '//picsum.photos/id/237/300/300',
-				content:
-					'The express frame work is more convenient to use and not strict to libraries',
-			},
-			{
-				id: 2,
-				user: 'Carry Minati',
-				image: '//picsum.photos/id/77/300/300',
-				content: "It's a great templating language and very easy to use!",
-			},
-			{
-				id: 3,
-				user: 'Jon Snow',
-				image: '//picsum.photos/id/74/300/300',
-				content: 'Winter is coming Bruh!',
-			},
-			{
-				id: 4,
-				user: 'Alice Tower',
-				image: '//picsum.photos/id/64/300/300',
-				content: 'Night is still young. #night #hightower',
-			},
-			{
-				id: 5,
-				user: 'Scott Mime',
-				image: '//picsum.photos/id/24/300/300',
-				content: 'Northern places are very good to visit in winter.',
-			},
-			{
-				id: 6,
-				user: 'Larry wheels',
-				image: '//picsum.photos/id/12/300/300',
-				content: 'Power Quality and Facts is a good subject',
-			},
-		],
-	});
+	const posts = JSON.parse(fs.readFileSync('./posts/data.json'));
+	res.render('index', { posts });
 });
 
-app.get('/create-post', (req, res) => {
-	res.render('createPost');
+app.post('/add-post', (req, res) => {
+	const posts = JSON.parse(fs.readFileSync('./posts/data.json'));
+	const newPost = {
+		title: req.body.title,
+		content: req.body.content,
+	};
+	posts.push(newPost);
+	fs.writeFileSync('./posts/data.json', JSON.stringify(posts));
+	res.redirect('/');
 });
 
-app.use((req, res, next) => {
-	res.render('error');
-});
-
-app.listen(3000, () => {
-	console.log('Server is running on PORT 3000');
+app.listen(PORT, () => {
+	console.log(`Server started on http://localhost:${PORT}`);
 });
