@@ -1,0 +1,20 @@
+html 
+  head  
+    link(rel="stylesheet", href="/assets/css/style.css")
+    title Insta Dup 
+  body  
+    nav 
+      ul 
+        li  
+          h1
+            a(href="/")  Insta
+    #container
+      form.create-post(action="/", method="post")
+        label(for="user") Name
+        input(type="text" name="user")
+        label(for="file") Upload Image
+        input(type="file" name="image")
+        label(for="content") Caption
+        input(type="text" name="content")
+        button(type="submit") Submit
+
