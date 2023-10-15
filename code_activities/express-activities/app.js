@@ -12,7 +12,6 @@ app.get('/', (req, res) => {
 
 app.post('/feedback', (req, res) => {
 	const feedback = req.body.feedback;
-
 	console.log('Received feedback: ', feedback);
 
 	res.send('Thankyou for your feedback');
