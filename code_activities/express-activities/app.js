@@ -7,7 +7,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'pug');
 
 app.get('/', (req, res) => {
-	res.render('survey');
+	res.render('home');
+});
+
+app.get('/projects', (req, res) => {
+	res.render('projects');
+});
+
+app.get('/about', (req, res) => {
+	res.render('about');
+});
+
+app.get('/contact', (req, res) => {
+	res.render('contact');
 });
 
 app.post('/feedback', (req, res) => {
