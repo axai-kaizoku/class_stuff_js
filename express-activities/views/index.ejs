@@ -2,34 +2,26 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<title>Blog Posts</title>
-		<link
-			rel="stylesheet"
-			href="../public/style.css" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Todo App</title>
 	</head>
 	<body>
-		<h1>Welcome to Blog Platform</h1>
-
-		<!-- Displaying Blog Posts -->
-		<% for(let post of posts) { %>
-		<div class="post">
-			<h2><%= post.title %></h2>
-			<p><%= post.content %></p>
-		</div>
-		<% } %>
-
-		<!-- Add New Post Form -->
-		<form
-			action="/add-post"
-			method="post">
-			<input
-				type="text"
-				name="title"
-				placeholder="Title" />
-			<textarea
-				name="content"
-				placeholder="Content"></textarea>
-			<button type="submit">Submit</button>
-		</form>
+		<h1>All Tasks</h1>
+		<ul>
+			<% todos.forEach((todo) => { %>
+			<li>
+				<p>
+					<%= todo.title %> <% if (todo.completed) {%>
+					<span style="color: green">(Completed)</span>
+					<% } else { %>
+					<a href="/complete/<%= todo.id %>">Complete</a>
+				</p>
+				<% } %>
+			</li>
+			<% }) %>
+		</ul>
+		<a href="/create">Create new todo</a>
 	</body>
 </html>

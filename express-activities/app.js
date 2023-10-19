@@ -1,35 +1,19 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const fs = require('fs');
+import express from 'express';
+import todoController from './controllers/toDoController';
 
 const app = express();
 const PORT = 3000;
 
-// Set view engine to ejs
 app.set('view engine', 'ejs');
+// app.set('views', __dirname + './views');
 
-// Middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
 
-// Routes
-app.get('/', (req, res) => {
-	const posts = JSON.parse(fs.readFileSync('./posts/data.json'));
-	res.render('index', { posts });
-});
-
-app.post('/add-post', (req, res) => {
-	const posts = JSON.parse(fs.readFileSync('./posts/data.json'));
-	const newPost = {
-		title: req.body.title,
-		content: req.body.content,
-	};
-	posts.push(newPost);
-	fs.writeFileSync('./posts/data.json', JSON.stringify(posts));
-	res.redirect('/');
-});
+app.get('/', todoController.getAllTodos);
+app.get('/create', todoController.createToDoForm);
+app.post('/create', todoController.createToDoItem);
+app.get('/complete/:id', todoController.completeToDoItem);
 
 app.listen(PORT, () => {
-	console.log(`Server started on http://localhost:${PORT}`);
+	console.log(`Server is running on PORT ${PORT}!`);
 });
