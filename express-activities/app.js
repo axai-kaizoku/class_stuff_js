@@ -1,11 +1,13 @@
 import express from 'express';
 import session from 'express-session';
+import { join } from 'path';
 
 const app = express();
 const PORT = 3000;
 
 app.set('view engine', 'ejs');
-
+app.set('views', __dirname + '/views');
+app.use(express.static(join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(
 	session({
