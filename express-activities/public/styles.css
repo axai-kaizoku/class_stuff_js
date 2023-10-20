@@ -8,22 +8,18 @@ h1 {
 	font-size: 50px;
 }
 
-label,
-button,
-p,
-a {
-	font-size: 32px;
+.title {
+	font-size: 36px;
 }
 
-input {
-	font-size: 28px;
+.post {
+	border: 1px solid green;
+	width: 500px;
+	padding: 20px;
+	margin-bottom: 20px;
+	border-radius: 12px;
 }
 
-body {
-	text-align: center;
-	margin-top: 200px;
-}
-
-button {
-	cursor: pointer;
+.content {
+	font-size: 24px;
 }
