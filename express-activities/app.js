@@ -1,49 +1,37 @@
 import express from 'express';
-import session from 'express-session';
-import { join } from 'path';
+import bodyParser from 'body-parser';
+import morgan from 'morgan';
+import jwt from 'jsonwebtoken';
 
 const app = express();
 const PORT = 3000;
+const secretKey = 'mysecretkey';
 
-app.set('view engine', 'ejs');
-app.set('views', __dirname + '/views');
-app.use(express.static(join(__dirname, 'public')));
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(
-	session({
-		secret: 'mysecretkey',
-		resave: false,
-		saveUninitialized: true,
-	}),
-);
-
-const authenticate = (req, res, next) => {
-	if (req.session.isAuthenticated) {
-		next();
-	} else {
-		res.redirect('/login');
-	}
-};
+app.use(morgan('dev'));
 
 const users = [
 	{
-		username: 'axai',
-		password: 'axai123',
-		role: 'student',
+		id: 1,
+		username: 'john',
+		password: 'john123',
 	},
 	{
-		username: 'thanai',
-		password: 'thanai123',
-		role: 'faculty',
+		id: 2,
+		username: 'jenny',
+		password: 'jenny123',
 	},
 ];
 
-app.get('/', (req, res) => {
-	res.render('home');
-});
+// Routes
 
-app.get('/login', (req, res) => {
-	res.render('login');
+app.post('/signup', (req, res) => {
+	const { username, password } = req.body;
+	const id = users.length + 1;
+	users.push({ id, username, password });
+	res.status(201).json({ message: 'User created Successfully!' });
+	console.log(users);
 });
 
 app.post('/login', (req, res) => {
@@ -52,45 +40,40 @@ app.post('/login', (req, res) => {
 		(u) => u.username === username && u.password === password,
 	);
 
-	if (user) {
-		req.session.isAuthenticated = true;
-		req.session.userRole = user.role;
-		if (req.session.userRole === 'student') {
-			res.redirect('/studentView');
-		} else if (req.session.userRole === 'faculty') {
-			res.redirect('/facultyView');
-		} else {
-			res.redirect('/');
-		}
-	} else {
-		res.redirect('/login');
+	if (!user) {
+		res.status(401).json({ message: 'Invalid credentials!' });
 	}
-});
 
-app.get('/logout', (req, res) => {
-	req.session.destroy((err) => {
-		if (err) {
-			console.log(err);
-		}
-		res.redirect('/login');
+	// Generate Token
+	const token = jwt.sign({ id: user.id, username: user.username }, secretKey, {
+		expiresIn: '1h',
 	});
+
+	res.json({ token });
 });
 
-app.get('/studentView', authenticate, (req, res) => {
-	if (req.session.isAuthenticated && req.session.userRole === 'student') {
-		res.render('studentView');
-	} else {
-		res.redirect('/login');
-	}
+// Protected Route
+
+app.get('/protected', verifyToken, (req, res) => {
+	res.json({ message: 'Protected route accessed!' });
 });
 
-app.get('/facultyView', authenticate, (req, res) => {
-	if (req.session.isAuthenticated && req.session.userRole === 'faculty') {
-		res.render('facultyView');
-	} else {
-		res.redirect('/login');
+function verifyToken(req, res, next) {
+	const token = req.headers.authorization.split(' ')[1];
+
+	if (!token) {
+		res.status(401).json({ message: 'No token provided!' });
 	}
-});
+
+	jwt.verify(token, secretKey, (err, decoded) => {
+		if (err) {
+			res.status(401).json({ message: 'Invalid token!' });
+		}
+
+		req.user = decoded;
+		next();
+	});
+}
 
 app.listen(PORT, () => {
 	console.log(`Server is running on PORT ${PORT}!`);
