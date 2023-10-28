@@ -1,0 +1,101 @@
+db.students.insertMany([{name: "Jane Smith",
+age: 25,
+department: "Marketing",
+salary: 35000,
+address: {
+    city: "Los Angeles",
+    country: "USA",
+},
+skills: ["content creation", "SEO", "branding"]},
+
+{name: "Robert Brown",
+age: 28,
+department: "IT",
+salary: 45000,
+address: {
+    city: "Chicago",
+    country: "USA",
+},
+skills: ["Java", "database management", "system architecture"]},
+
+{name: "Emily Clark",
+age: 32,
+department: "Finance",
+salary: 48000,
+address: {
+    city: "Houston",
+    country: "USA",
+},
+skills: ["accounting", "risk management", "financial modeling"]},
+
+{name: "William White",
+age: 35,
+department: "Human Resources",
+salary: 38000,
+address: {
+    city: "Miami",
+    country: "USA",
+},
+skills: ["recruitment", "employee engagement", "compensation and benefits"]},
+
+{name: "Linda Green",
+age: 29,
+department: "Logistics",
+salary: 42000,
+address: {
+    city: "San Francisco",
+    country: "USA",
+},
+skills: ["supply chain management", "transportation", "inventory control"]},
+
+{name: "Michael Wilson",
+age: 31,
+department: "Research & Development",
+salary: 46000,
+address: {
+    city: "Boston",
+    country: "USA",
+},
+skills: ["product development", "analytics", "market research"]},
+
+{name: "Elizabeth Johnson",
+age: 27,
+department: "Design",
+salary: 39000,
+address: {
+    city: "Seattle",
+    country: "USA",
+},
+skills: ["graphic design", "UX/UI", "3D modeling"]},
+
+{name: "James Taylor",
+age: 33,
+department: "Operations",
+salary: 43000,
+address: {
+    city: "Phoenix",
+    country: "USA",
+},
+skills: ["process optimization", "quality assurance", "project management"]},
+
+{name: "Jennifer Lewis",
+age: 34,
+department: "Customer Service",
+salary: 37000,
+address: {
+    city: "Dallas",
+    country: "USA",
+},
+skills: ["client relations", "problem-solving", "CRM"]},
+
+{name: "Christopher Martin",
+age: 26,
+department: "Legal",
+salary: 50000,
+address: {
+    city: "Philadelphia",
+    country: "USA",
+},
+skills: ["contract review", "litigation", "legal research"]},
+]);
+
