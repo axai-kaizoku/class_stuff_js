@@ -1,15 +1,17 @@
 {
-	"name": "mongodb",
+	"name": "restaurant-project-express-main",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "app.js",
 	"scripts": {
-		"start": "node app.js"
+		"start": "nodemon app.js"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"mongodb": "^6.2.0"
+		"bcrypt": "^5.1.1",
+		"express": "^4.18.2",
+		"mongoose": "^7.6.3"
 	}
 }
