@@ -1,10 +1,13 @@
 const Router = require('express').Router;
+const userController = require('../controller/userController');
 const router = Router();
-const userController = require('../controllers/userController');
 
-router.get('/', userController.getAllUsers);
-router.post('/register', userController.registerUser);
+router.get('/', (req, res) => {
+	res.json({ message: 'Hello from user!' });
+});
+router.get('/getAll', userController.getAll);
 router.post('/login', userController.loginUser);
-router.post('/deleteAll', userController.deleteAll);
+router.get('/:id', userController.getUser);
+router.post('/add', userController.addUser);
 
 module.exports = router;
